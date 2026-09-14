@@ -1,0 +1,44 @@
+@startuml
+
+' PATRON STRATEGY
+
+' Interfaz que define el comportamiento comun de todas las estrategias.
+interface Strategy {
+    ' Metodo que sera implementado por todas las estrategias concretas.
+    + ejecutar(a : double, b : double) : double
+}
+
+' Clase que utiliza la estrategia.
+class Context {
+    ' Referencia a la estrategia seleccionada.
+    - strategy : Strategy
+    ' Constructor que recibe la estrategia a utilizar.
+    + Context(strategy : Strategy)
+    ' Permite cambiar la estrategia en tiempo de ejecucion.
+    + setStrategy(strategy : Strategy) : void
+    ' Ejecuta la operacion definida por la estrategia seleccionada.
+    + ejecutar(a : double, b : double) : double
+}
+
+' Estrategia concreta que suma.
+class SumaStrategy {
+    + ejecutar(a : double, b : double) : double
+}
+' Estrategia concreta que resta.
+class RestaStrategy {
+    + ejecutar(a : double, b : double) : double
+}
+' Estrategia concreta que multiplica.
+class MultiplicacionStrategy {
+    + ejecutar(a : double, b : double) : double
+}
+
+' Las estrategias concretas implementan la interfaz Strategy.
+Strategy <|.. SumaStrategy
+Strategy <|.. RestaStrategy
+Strategy <|.. MultiplicacionStrategy
+
+' El contexto utiliza una estrategia.
+Context --> Strategy : utiliza
+
+@enduml

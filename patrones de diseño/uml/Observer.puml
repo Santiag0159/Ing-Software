@@ -1,0 +1,39 @@
+@startuml
+
+' PATRON OBSERVER
+
+' Interfaz que define el comportamiento de los observadores.
+interface Observer {
+    ' Metodo que recibe las notificaciones del sujeto.
+    + update(mensaje : String) : void
+}
+
+' Clase que mantiene una lista de observadores y notifica a todos ellos.
+class Subject{
+    ' Lista de objetos que implementan la interfaz Observer.
+    - observers : List<Observer> 
+    ' Agrega un nuevo observador a la lista.
+    + attach(observer : Observer) : void
+    ' Elimina un observador de la lista.
+    + detach(observer : Observer) : void
+    ' Notifica a todos los observadores con un mensaje.
+    + notifyObservers(mensaje : String) : void
+}
+
+' Observador concreto. Representa a un usuario que recibe notificaciones.
+class Usuario{
+    ' Nombre del usuario.
+    - nombre : String
+    ' Constructor que recibe el nombre
+    + Usuario(nombre : String)
+    ' Actualiza al usuario cuando recibe una notificacion.
+    + update(mensaje : String) : void
+
+}
+
+' Usuario implementa la interfaz Observer.
+Observer <|.. Usuario
+' Sujeto mantiene una coleccion de observadores a los cuales notificar.
+Subject o-- Observer : notifica 
+
+@enduml
