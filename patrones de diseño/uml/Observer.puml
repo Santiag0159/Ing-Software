@@ -3,21 +3,23 @@
 ' PATRON OBSERVER
 
 ' Interfaz que define el comportamiento de los observadores.
-interface Observer {
+interface Observador {
     ' Metodo que recibe las notificaciones del sujeto.
-    + update(mensaje : String) : void
+    + actualizar(mensaje : String) : void
 }
 
 ' Clase que mantiene una lista de observadores y notifica a todos ellos.
-class Subject{
+class Sujeto{
     ' Lista de objetos que implementan la interfaz Observer.
-    - observers : List<Observer> 
+    - observadores : List 
+    ' Constructor que inicializa la lista de observadores.
+    + Sujeto()
     ' Agrega un nuevo observador a la lista.
-    + attach(observer : Observer) : void
+    + agregarObservador(observador : Observador) : void
     ' Elimina un observador de la lista.
-    + detach(observer : Observer) : void
+    + eliminarObservador(observador : Observador) : void
     ' Notifica a todos los observadores con un mensaje.
-    + notifyObservers(mensaje : String) : void
+    + notificarObservadores(mensaje : String) : void
 }
 
 ' Observador concreto. Representa a un usuario que recibe notificaciones.
@@ -27,13 +29,14 @@ class Usuario{
     ' Constructor que recibe el nombre
     + Usuario(nombre : String)
     ' Actualiza al usuario cuando recibe una notificacion.
-    + update(mensaje : String) : void
+    + actualizar(mensaje : String) : void
 
 }
 
-' Usuario implementa la interfaz Observer.
-Observer <|.. Usuario
+
 ' Sujeto mantiene una coleccion de observadores a los cuales notificar.
-Subject o-- Observer : notifica 
+Sujeto o-- Observador : notifica 
+' Usuario implementa la interfaz Observador.
+Observador <|.. Usuario
 
 @enduml
