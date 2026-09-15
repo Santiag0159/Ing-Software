@@ -49,12 +49,19 @@ Luego, compilar el ejemplo que se desea ejecutar.
 
 Singleton
 javac singleton/*.java
+
 java singleton.Main
+
 Observer
+
 javac observer/*.java
+
 java observer.Main
+
 Strategy
+
 javac strategy/*.java
+
 java strategy.Main
 
 Cada comando ejecutará únicamente el ejemplo correspondiente al patrón seleccionado.
